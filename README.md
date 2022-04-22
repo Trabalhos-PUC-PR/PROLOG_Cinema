@@ -1,6 +1,10 @@
 ## Enunciado:
 
-Part 1: Escreva regras para responder as seguintes perguntas:  
+No [link](https://swish.swi-prolog.org/p/Cinema_PUC_2022-1.pl):  
+Existe um banco de dados com informações sobre os filmes de Hollywood. Neste link também estão as considerações referentes a criação deste banco de dados, inclusive explicando como foram criados os fatos que relacionam os átomos envolvidos.  
+Sua tarefa será criar regras para atender as questões apresentadas no link acima e publicar, como resposta, o link do seu arquivo, contendo o banco, e as regras que você criou.
+******
+Escreva regras para responder as seguintes perguntas:  
 
     a. Em que ano estreiou o filme American Beauty?
     b. Liste todos os filmes que estreiaram em 2000.
