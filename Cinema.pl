@@ -1,68 +1,33 @@
-/* 
+% Exercício 1
+filmesEstreadosEm2000(_):- filme(X, 2000), write(X), nl, fail. 
 
-Part 1: Escreva regras para responder as seguintes perguntas:
+% Exercício 2
+filmesAntesDe2000(_):- filme(X, Y), (Y < 2000 ->  write(X), write(", "), write(Y), nl, fail). 
 
-    a. Em que ano estreiou o filme American Beauty?
-    b. Liste todos os filmes que estreiaram em 2000.
-    c. Liste os filmes que estreiaram antes de 2000.
-    d. Liste os filmes que estreiaram depois de 1990.
-    f. Encontre o diretor dos filmes com Scarlett Johansson.
-    g. Encontre os atores que também dirigiram filmes.
-    h. Encontre os atores, ou atrizes, que dirigiram filmes.
-    i. Encontre o filme no qual John Goodman e Jeff Bridges atuaram.
-*/
+% Exercício 3
+filmesDepoisDe1990(_):- filme(X, Y), (Y > 1990 ->  write(X), write(", "), write(Y), nl, fail).
 
-/* Como este banco de dados foi montado:
-    filme(M, Y) <- filme M estreiou no ano Y
-    diretor(M, D) <- filme M dirigido pelo diretor D
-    ator(M, A, R) <- ator A interpretou o papel de R no filme M
-    atriz(M, A, R) <- atriz A interpretou o papel de R no filme M
-*/
+% Exercício 4
+filmesDiretoraScarlett(_):- atriz(X, scarlett_johansson, _),  diretor(X, Y), 
+    write(X), write(", diretor: "), write(Y), nl, fail.
 
-/*
- * usando discontiguos, podemos determinar a ordem em que os predicados 
- * irão aparecer no banco de dados. Neste caso, a ordem foi escolhida para 
- * ser adequada ao arquivo txt que continha estas informações.
- * */
+% Exercício 5
+atoresDiretores(_):- ator(Y, X, _), diretor(Y, X),  
+    write("filme: "), write(Y), write(", diretor-ator: "), write(X), nl, fail.
+
+% Exercício 6
+atoresE_AtorasDiretores(_):- (ator(Y, X, _), diretor(Y, X); atriz(Y, X, _), diretor(Y, X)),  
+    write("filme: "), write(Y), write(", diretor-ator: "), write(X), nl, fail.
+
+% Exercício 7
+filmeDeJohnEJeff(_):- ator(M, john_goodman, _), ator(M, jeff_bridges, _), write(M), nl, fail.
+
 :- discontiguous
         filme/2,
         diretor/2,
         ator/3,
         atriz/3.
 
-filmesEstreadosEm2000(_):- filme(X, 2000), write(X), nl, fail. 
-
-filmesAntesDe2000(_):- filme(X, Y), (Y < 2000 ->  write(X), write(", "), write(Y), nl, fail). 
-
-filmesDepoisDe1990(_):- filme(X, Y), (Y > 1990 ->  write(X), write(", "), write(Y), nl, fail).
-
-filmesDiretoraScarlett(_):- atriz(X, scarlett_johansson, _),  diretor(X, Y), 
-    write(X), write(", diretor: "), write(Y), nl, fail.
-
-atoresDiretores(_):- ator(Y, X, _), diretor(Y, X),  
-    write("filme: "), write(Y), write(", diretor-ator: "), write(X), nl, fail.
-
-atoresE_AtorasDiretores(_):- (ator(Y, X, _), diretor(Y, X); atriz(Y, X, _), diretor(Y, X)),  
-    write("filme: "), write(Y), write(", diretor-ator: "), write(X), nl, fail.
-
-filmeDeJohnEJeff(_):- ator(M, john_goodman, _), ator(M, jeff_bridges, _), write(M), nl, fail.
-
-/*
- * Você vai precisar usar a variável anônima _ veja o exemplo a seguir:
- * atriz(M, scarlett_johansson, _), diretor(M, D).
- * rode este querie e veja se funciona. 
- * Todas as variáveis anônimas, são diferentes entre si e como tal 
- * são tratadas de forma diferente.
- * Maria ama joao, joao ama paula, se queremos saber se paulo quer saber quem o ama
- * podemos usar uma variável comum, mas para saber se alguém o ama podemos usar uma 
- * variável anônima
- * ama(maria,joao).
- * ama(joao,paula).
- * ama(cachorro,bife).
- * ama(jose,maria).
- * tente: ama(X,joao).
- * tente: ama(_,joao).
- * */
 
 %Banco de Dados
 filme(american_beauty, 1999).
